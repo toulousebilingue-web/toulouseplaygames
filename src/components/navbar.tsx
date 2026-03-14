@@ -1,14 +1,27 @@
-import Link from 'next/link'
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Navbar() {
   return (
     <nav className="flex items-center justify-between p-4 border-b bg-white">
-      <Link href="/" className="text-xl font-bold text-blue-600">
-        Toulouse Play Games
+      {/* Logo avec margin-top (mt-3) pour le descendre un peu 
+          et une hauteur définie pour ne pas casser la barre de navigation
+      */}
+      <Link href="/" className="mt-3 block">
+        <Image 
+          src="/icons/ToulousePlayGames.png" 
+          alt="Toulouse Play Games" 
+          width={150}   // Ajuste la largeur selon tes envies
+          height={50}   // Ajuste la hauteur
+          className="object-contain"
+        />
       </Link>
+
+      {/* On a supprimé "À propos" et "Archives" 
+          On peut laisser la div vide ou ajouter d'autres liens plus tard
+      */}
       <div className="space-x-4 text-sm font-medium">
-        <Link href="/about" className="hover:text-blue-500">À propos</Link>
-        <Link href="/admin/archived" className="hover:text-blue-500">Archives</Link>
+        {/* Liens supprimés comme demandé */}
       </div>
     </nav>
   )
