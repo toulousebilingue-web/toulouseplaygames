@@ -1,7 +1,7 @@
 
 "use client";
 
-import { Navbar } from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ShoppingBag, MapPin, Star, Phone, Clock, Map as MapIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";

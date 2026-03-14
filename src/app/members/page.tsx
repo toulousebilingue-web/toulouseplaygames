@@ -2,12 +2,12 @@
 "use client";
 
 import { useState } from "react";
-import { Navbar } from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, MapPin, Dice6, Activity, Star, UserPlus, MessageCircle } from "lucide-react";
+import { Search, MapPin, Dice6, Activity, Star, UserPlus, MessageCircle, Users } from "lucide-react";
 import { MOCK_PROFILES } from "@/lib/mock-data";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";

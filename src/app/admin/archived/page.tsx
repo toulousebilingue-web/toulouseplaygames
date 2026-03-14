@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import { Navbar } from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Archive, Trash2, RefreshCcw, ShieldAlert, Search } from "lucide-react";

@@ -1,7 +1,7 @@
 
 "use client";
 
-import { Navbar } from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dice6, MessageSquare, Users, Zap, Heart, ShieldAlert, ArrowRight, Sparkles } from "lucide-react";

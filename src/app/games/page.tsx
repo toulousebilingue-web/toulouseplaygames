@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { Dice6, Search, Users, Trophy, Heart, Plus, Check } from "lucide-react";
-import { Navbar } from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";

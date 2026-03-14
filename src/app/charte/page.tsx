@@ -1,6 +1,6 @@
 "use client";
 
-import { Navbar } from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Handshake, ShieldAlert, Heart, MessageCircle, Ban, BadgeCheck, Info } from "lucide-react";
 import Link from "next/link";

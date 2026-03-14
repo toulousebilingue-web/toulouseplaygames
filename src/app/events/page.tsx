@@ -4,8 +4,8 @@
 import { useState } from "react";
 import { Search, SlidersHorizontal, Plus } from "lucide-react";
 import Link from "next/link";
-import { Navbar } from "@/components/navbar";
-import { EventCard } from "@/components/event-card";
+import  Navbar from "@/components/navbar";
+import EventCard from "@/components/EventCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { MOCK_EVENTS, MOCK_GAMES } from "@/lib/mock-data";

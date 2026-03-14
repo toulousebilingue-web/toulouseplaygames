@@ -1,14 +1,14 @@
 
 "use client";
 
-import { Navbar } from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Trophy, Calendar, Heart, Settings, Edit2, MapPin, Dice6, Activity, Star, Plus } from "lucide-react";
-import { EventCard } from "@/components/event-card";
+import EventCard from "@/components/EventCard";
 import { MOCK_EVENTS, MOCK_GAMES, MOCK_PROFILES } from "@/lib/mock-data";
 import Link from "next/link";
 
@@ -34,12 +34,14 @@ export default function ProfilePage() {
               <div className="h-28 bg-primary" />
               <CardContent className="relative pt-0 px-6 pb-8">
                 <div className="inline-block relative -mt-14 mb-4">
-                  <Avatar className="h-28 w-28 border-4 border-white shadow-xl">
-                    <AvatarImage src={user.avatar_url} />
-                    <AvatarFallback className="bg-secondary text-secondary-foreground text-2xl font-black">
-                      {user.username.substring(0, 2)}
-                    </AvatarFallback>
-                  </Avatar>
+<Avatar className="h-28 w-28 border-4 border-white shadow-xl">
+  {/* On vérifie les deux noms possibles pour l'image */}
+  <AvatarImage src={user.avatar_url || user.avatar} />
+  <AvatarFallback className="bg-secondary text-secondary-foreground text-2xl font-black">
+    {/* On utilise name (ou username) avec une sécurité et une valeur par défaut */}
+    {(user.name || user.username || "U").substring(0, 2).toUpperCase()}
+  </AvatarFallback>
+</Avatar>
                   <Button size="icon" variant="secondary" className="absolute bottom-1 right-1 h-9 w-9 rounded-full shadow-lg border-2 border-white hover:scale-110 transition-transform" asChild>
                     <Link href="/profile/settings"><Edit2 className="h-4 w-4" /></Link>
                   </Button>

@@ -1,10 +1,9 @@
-
 "use client";
 
 import { useState, useMemo, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
-import { Navbar } from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,16 +13,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Sparkles, Calendar as CalendarIcon, MapPin, Users, Loader2, Search, Check, ChevronsUpDown, Clock, Bus, Info, Camera, Image as ImageIcon, Building2, PlusCircle, Star, RefreshCw, ShieldCheck } from "lucide-react";
+import { Sparkles, Search, ChevronsUpDown, Camera, ImageIcon, Building2, Star, RefreshCw, ShieldCheck, Loader2 } from "lucide-react";
 import { MOCK_GAMES, MOCK_PROFILES, MOCK_EVENTS } from "@/lib/mock-data";
-import { ALL_SPORTS } from "@/lib/sports-data";
+import { ALL_SPORTS, SPORTS_DATA } from "@/lib/sports-data";
 import { ALL_BARS, Bar } from "@/lib/bars-data";
 import { aiEventDescriptionGenerator } from "@/ai/flows/ai-event-description-generator";
 import { useToast } from "@/hooks/use-toast";
-import { cn } from "@/lib/utils";
 import { Switch } from "@/components/ui/switch";
+import { cn } from "@/lib/utils";
 
-const LocationMap = dynamic(() => import("@/components/location-map"), { 
+const LocationMap = dynamic(() => import("@/components/LocationMap"), { 
   ssr: false,
   loading: () => <div className="h-[300px] w-full bg-muted animate-pulse rounded-2xl flex items-center justify-center text-muted-foreground">Chargement de la carte...</div>
 });
@@ -33,7 +32,7 @@ function NewEventForm() {
   const searchParams = useSearchParams();
   const { toast } = useToast();
   
-  const user = MOCK_PROFILES[0]; // Simulation utilisateur Lucas_Admin
+  const user = MOCK_PROFILES[0];
   const isAdmin = user.role === 'administrateur';
   
   const editId = searchParams.get('edit');
@@ -100,20 +99,33 @@ function NewEventForm() {
     }
   }, [editId, duplicateId, isDuplicating]);
 
-  const filteredItems = useMemo(() => {
+const filteredItems = useMemo(() => {
     if (activityType === "jeu") {
       return MOCK_GAMES.filter(game => 
         game.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
     } else {
-      const allSearch = ALL_SPORTS.filter(sport => 
-        sport.toLowerCase().includes(searchTerm.toLowerCase())
-      ).map(s => ({ id: s, title: s }));
-      const mySports = allSearch.filter(s => user.favorite_sports?.includes(s.title));
-      const otherSports = allSearch.filter(s => !user.favorite_sports?.includes(s.title));
-      return { mySports, otherSports };
+      // Sécurité : on s'assure que SPORTS_DATA existe bien avant de manipuler
+      const sportsSource = SPORTS_DATA || [];
+      const favs = user?.favorite_sports || [];
+      const searchLower = searchTerm.toLowerCase();
+
+      // 1. Filtrer les Favoris
+      const mySports = sportsSource.flatMap(cat => cat.items || [])
+        .filter(name => name.toLowerCase().includes(searchLower) && favs.includes(name))
+        .map(name => ({ id: name.toLowerCase().replace(/\s+/g, '-'), title: name }));
+
+      // 2. Filtrer l'arborescence complète (en excluant les favoris)
+      const categorizedSports = sportsSource.map(cat => ({
+        ...cat,
+        filteredItems: (cat.items || []).filter(name => 
+          name.toLowerCase().includes(searchLower) && !favs.includes(name)
+        )
+      })).filter(cat => cat.filteredItems.length > 0);
+
+      return { mySports, categorizedSports };
     }
-  }, [activityType, searchTerm, user.favorite_sports]);
+  }, [activityType, searchTerm, user?.favorite_sports]);
 
   const selectedItemTitle = useMemo(() => {
     if (activityType === "jeu") {
@@ -162,7 +174,6 @@ function NewEventForm() {
       toast({ title: "Fin de récurrence", description: "Veuillez choisir une date de fin.", variant: "destructive" });
       return false;
     }
-    
     if (!isAdmin) {
       const maxDate = new Date();
       maxDate.setFullYear(maxDate.getFullYear() + 1);
@@ -178,7 +189,6 @@ function NewEventForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateRecurrence()) return;
-    
     toast({ 
       title: isEditing ? "Événement mis à jour" : "Événement créé", 
       description: formData.is_recurring ? "Les occurrences ont été planifiées." : "Votre sortie est en ligne !" 
@@ -241,49 +251,82 @@ function NewEventForm() {
                   <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0" align="start">
-                <div className="flex items-center border-b px-3 h-12">
-                  <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
-                  <input
-                    placeholder="Chercher..."
-                    className="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                  />
+<PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0" align="start">
+  <div className="flex items-center border-b px-3 h-12">
+    <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+    <input
+      placeholder="Chercher..."
+      className="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+    />
+  </div>
+  <ScrollArea className="h-72">
+    <div className="p-1">
+      {activityType === "jeu" ? (
+        Array.isArray(filteredItems) && filteredItems.map((item: any, index: number) => (
+          <div 
+            key={`game-${item.id}-${index}`} 
+            className="p-2 hover:bg-muted cursor-pointer rounded-md text-sm" 
+            onClick={() => { setFormData(prev => ({ ...prev, game_id: item.id })); setOpenSearch(false); }}
+          >
+            {item.title}
+          </div>
+        ))
+) : (
+      <>
+        {/* SECTION FAVORIS */}
+        {(filteredItems as any).mySports.length > 0 && (
+          <div className="mb-4">
+            <div className="px-2 py-1.5 text-[10px] font-black uppercase text-primary bg-primary/5 rounded flex items-center gap-2 mb-2">
+              <Star className="h-3 w-3 fill-primary" /> Mes Sports Favoris
+            </div>
+            {(filteredItems as any).mySports.map((sport: any, idx: number) => (
+              <div 
+                key={`fav-${sport.id}-${idx}`} 
+                className="p-2 ml-2 hover:bg-primary/10 cursor-pointer rounded-md text-sm font-bold text-primary" 
+                onClick={() => { setFormData(prev => ({ ...prev, sport_name: sport.title })); setOpenSearch(false); }}
+              >
+                {sport.title}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* SECTION ARBORESCENCE */}
+        {(filteredItems as any).categorizedSports.map((cat: any) => (
+          <div key={cat.category} className="mb-4">
+            {/* Header de la Catégorie */}
+            <div className={cn(
+              "px-2 py-1 flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider opacity-70",
+              cat.color
+            )}>
+              <cat.icon className="h-3.5 w-3.5" />
+              {cat.category}
+            </div>
+            
+            {/* Liste des sports dans cette catégorie */}
+            <div className="ml-4 border-l border-muted mt-1 pl-1">
+              {cat.filteredItems.map((name: string, idx: number) => (
+                <div 
+                  key={`${cat.category}-${idx}`} 
+                  className="p-2 hover:bg-muted cursor-pointer rounded-md text-sm transition-colors" 
+                  onClick={() => { 
+                    setFormData(prev => ({ ...prev, sport_name: name })); 
+                    setOpenSearch(false); 
+                  }}
+                >
+                  {name}
                 </div>
-                <ScrollArea className="h-72">
-                  <div className="p-1">
-                    {activityType === "jeu" ? (
-                      (filteredItems as any[]).map((item) => (
-                        <div key={item.id} className="p-2 hover:bg-muted cursor-pointer rounded-md text-sm" onClick={() => { setFormData(prev => ({ ...prev, game_id: item.id })); setOpenSearch(false); }}>
-                          {item.title}
-                        </div>
-                      ))
-                    ) : (
-                      <>
-                        {(filteredItems as any).mySports.length > 0 && (
-                          <div className="mb-4">
-                            <div className="px-2 py-1 text-[10px] font-black uppercase text-primary bg-primary/5 flex items-center gap-1 mb-1">
-                              <Star className="h-3 w-3 fill-primary" /> Mes Sports Favoris
-                            </div>
-                            {(filteredItems as any).mySports.map((item: any) => (
-                              <div key={item.id} className="p-2 hover:bg-primary/10 cursor-pointer rounded-md text-sm font-bold text-primary" onClick={() => { setFormData(prev => ({ ...prev, sport_name: item.id })); setOpenSearch(false); }}>
-                                {item.title}
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                        <div className="px-2 py-1 text-[10px] font-black uppercase text-muted-foreground border-t mt-2 pt-2">Tous les sports</div>
-                        {(filteredItems as any).otherSports.map((item: any) => (
-                          <div key={item.id} className="p-2 hover:bg-muted cursor-pointer rounded-md text-sm" onClick={() => { setFormData(prev => ({ ...prev, sport_name: item.id })); setOpenSearch(false); }}>
-                            {item.title}
-                          </div>
-                        ))}
-                      </>
-                    )}
-                  </div>
-                </ScrollArea>
-              </PopoverContent>
+              ))}
+            </div>
+          </div>
+        ))}
+      </>
+    )}
+  </div>
+</ScrollArea>
+</PopoverContent>
             </Popover>
           </div>
 
@@ -309,7 +352,6 @@ function NewEventForm() {
         </CardContent>
       </Card>
 
-      {/* Section Récurrence */}
       <Card className="border-border/50 bg-accent/5">
         <CardHeader className="flex flex-row items-center justify-between">
           <div className="space-y-1">

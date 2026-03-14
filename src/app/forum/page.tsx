@@ -1,7 +1,7 @@
 
 "use client";
 
-import { Navbar } from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Users, TrendingUp, Plus, Search, ChevronRight, Hash, Clock, AlertTriangle } from "lucide-react";

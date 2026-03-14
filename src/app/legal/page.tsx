@@ -1,6 +1,6 @@
 "use client";
 
-import { Navbar } from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Scale } from "lucide-react";
 import Link from "next/link";

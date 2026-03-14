@@ -2,13 +2,13 @@
 "use client";
 
 import { useState } from "react";
-import { Navbar } from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Search, Send, Plus, User, MoreVertical, Trash2, AlertTriangle } from "lucide-react";
+import { Search, Send, Plus, User, MoreVertical, Trash2, AlertTriangle, MessageSquare } from "lucide-react";
 import { MOCK_PROFILES } from "@/lib/mock-data";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
@@ -68,14 +68,18 @@ export default function MessagesPage() {
                       )}
                     >
                       <div className="relative">
-                        <Avatar className="h-12 w-12 border-2 border-background shadow-sm">
-                          <AvatarImage src={chat.avatar_url} />
-                          <AvatarFallback>{chat.username[0]}</AvatarFallback>
-                        </Avatar>
+<Avatar className="h-12 w-12 border-2 border-white shadow-sm">
+  {/* On utilise 'chat' au lieu de 'member' */}
+  <AvatarImage src={chat.avatar_url || chat.avatar} />
+  <AvatarFallback className="bg-secondary text-secondary-foreground font-black">
+    {/* Sécurité : si chat.name n'existe pas, on met '??' */}
+    {chat.name?.substring(0, 2).toUpperCase() || "??"}
+  </AvatarFallback>
+</Avatar>
                         <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-green-500 border-2 border-white" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="font-bold truncate">{chat.username}</p>
+                        <p className="font-bold truncate">{chat.name}</p>
                         <p className="text-xs text-muted-foreground truncate">Dernier message...</p>
                       </div>
                     </div>
@@ -96,7 +100,7 @@ export default function MessagesPage() {
                           <AvatarFallback>U</AvatarFallback>
                         </Avatar>
                         <div>
-                          <p className="font-black text-lg leading-none">{chats.find(c => c.id === activeChat)?.username}</p>
+                          <p className="font-black text-lg leading-none">{chats.find(c => c.id === activeChat)?.name}</p>
                           <p className="text-xs text-green-600 font-bold mt-1 uppercase tracking-widest">En ligne</p>
                         </div>
                       </div>

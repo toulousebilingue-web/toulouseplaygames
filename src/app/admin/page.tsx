@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Navbar } from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Users, Calendar, Lightbulb, Star, ShieldAlert, Archive, Trash2, Edit2, CheckCircle2, XCircle, AlertTriangle, Eye, Settings, Save, Lock, MessageSquare, Search, Clock, ShieldCheck } from "lucide-react";
