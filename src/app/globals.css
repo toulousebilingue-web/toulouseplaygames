@@ -1,0 +1,77 @@
+@import 'leaflet/dist/leaflet.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Palette chaleureuse : Orange, Jaune, Bleu, Vert */
+    --background: 40 33% 98%; /* Crème chaud */
+    --foreground: 24 10% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 24 10% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 24 10% 10%;
+    
+    --primary: 24 95% 53%; /* Orange vibrant (Pion orange) */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 48 96% 53%; /* Jaune d'or (Pion jaune) */
+    --secondary-foreground: 24 10% 10%;
+    
+    --muted: 30 20% 94%;
+    --muted-foreground: 24 10% 40%;
+    
+    --accent: 199 89% 48%; /* Bleu azur (Pion bleu) */
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%; /* Rouge (Pion rouge) */
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 30 20% 90%;
+    --input: 30 20% 90%;
+    --ring: 24 95% 53%;
+    --radius: 1rem; /* Bords plus arrondis pour un côté ludique */
+    
+    --chart-1: 24 95% 53%;
+    --chart-2: 142 70% 45%; /* Vert (Pion vert) */
+    --chart-3: 199 89% 48%;
+    --chart-4: 48 96% 53%;
+    --chart-5: 0 84% 60%;
+  }
+  .dark {
+    --background: 24 15% 10%;
+    --foreground: 40 33% 98%;
+    --card: 24 15% 12%;
+    --card-foreground: 40 33% 98%;
+    --popover: 24 15% 12%;
+    --popover-foreground: 40 33% 98%;
+    --primary: 24 95% 63%;
+    --secondary: 48 96% 63%;
+    --muted: 24 15% 20%;
+    --muted-foreground: 24 15% 70%;
+    --accent: 199 89% 58%;
+    --border: 24 15% 25%;
+    --input: 24 15% 25%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline;
+  }
+}
+
+/* Fix for Leaflet marker shadow/image paths in some environments */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}

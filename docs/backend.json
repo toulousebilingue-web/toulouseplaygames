@@ -1,0 +1,129 @@
+
+{
+  "entities": {
+    "UserProfile": {
+      "title": "Profil Utilisateur",
+      "description": "Profil complet incluant les informations personnelles, préférences et rôles.",
+      "type": "object",
+      "properties": {
+        "pseudo": { "type": "string" },
+        "nom": { "type": "string" },
+        "prenom": { "type": "string" },
+        "description": { "type": "string" },
+        "ville": { "type": "string" },
+        "departement": { "type": "string" },
+        "region": { "type": "string" },
+        "pays": { "type": "string" },
+        "telephone": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "genre": { "type": "string", "enum": ["homme", "femme", "autre"] },
+        "langues_parlees": { "type": "string" },
+        "role": { "type": "string", "enum": ["membre", "organisateur", "moderateur", "administrateur"], "default": "membre" },
+        "statut_social": { "type": "string", "enum": ["joueur", "organisateur", "membre"], "default": "joueur" },
+        "etudiant": { "type": "boolean" },
+        "organisateur": { "type": "boolean" },
+        "vegetarien": { "type": "boolean" },
+        "vegan": { "type": "boolean" },
+        "cherche_emploi": { "type": "boolean" },
+        "cherche_logement": { "type": "boolean" },
+        "cherche_covoiturage": { "type": "boolean" },
+        "sport": { "type": "string" },
+        "musique": { "type": "string" },
+        "jeux": { "type": "string" },
+        "cuisine": { "type": "string" },
+        "danse": { "type": "string" },
+        "loisirs_divers": { "type": "string" },
+        "film": { "type": "string" },
+        "programmes_tele": { "type": "string" },
+        "livres": { "type": "string" },
+        "voyages": { "type": "string" },
+        "animaux": { "type": "string" },
+        "jaime": { "type": "string" },
+        "jenaimepas": { "type": "string" },
+        "environnement": { "type": "string" },
+        "centres_interets": { "type": "string" },
+        "est_majeur": { "type": "boolean" },
+        "est_actif": { "type": "boolean", "default": true },
+        "avatar_url": { "type": "string" },
+        "derniere_connexion": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Message": {
+      "title": "Message Privé",
+      "description": "Échanges entre membres.",
+      "type": "object",
+      "properties": {
+        "senderId": { "type": "string" },
+        "receiverId": { "type": "string" },
+        "content": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "isRead": { "type": "boolean" }
+      }
+    },
+    "ForumTopic": {
+      "title": "Sujet du Forum",
+      "description": "Sujets de discussion créés par les membres ou modérateurs.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "authorId": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Rating": {
+      "title": "Évaluation",
+      "description": "Notes et commentaires sur les événements.",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string" },
+        "authorId": { "type": "string" },
+        "score": { "type": "number" },
+        "comment": { "type": "string" },
+        "photos": { "type": "array", "items": { "type": "string" } },
+        "timestamp": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Suggestion": {
+      "title": "Suggestion",
+      "description": "Idées proposées par les membres.",
+      "type": "object",
+      "properties": {
+        "authorId": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "status": { "type": "string", "enum": ["en_attente", "accepte", "rejete"] }
+      }
+    }
+  },
+  "auth": {
+    "providers": ["google.com", "password"]
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Données des profils utilisateurs."
+    },
+    "/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Stockage des messages privés."
+    },
+    "/forum_topics/{topicId}": {
+      "schema": "ForumTopic",
+      "description": "Sujets du forum."
+    },
+    "/forum_topics/{topicId}/replies/{replyId}": {
+      "schema": "object",
+      "description": "Réponses au sujet."
+    },
+    "/ratings/{ratingId}": {
+      "schema": "Rating",
+      "description": "Evaluations des sorties."
+    },
+    "/suggestions/{suggestionId}": {
+      "schema": "Suggestion",
+      "description": "Suggestions de la communauté."
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Toulouse Play Games Sport",
+  "short_name": "TPG",
+  "description": "Applications de sorties pour faire des jeux et du Sport à Toulouse, Calendrier, catalogue",
+  "lang": "fr-FR",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFDAB9",
+  "theme_color": "#E0FFFF",
+  "icons": [
+    {
+      "src": "/logoToulousePlayGames192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logoTPG512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logoTPG512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
