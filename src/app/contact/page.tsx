@@ -25,7 +25,7 @@ export default function ContactPage() {
       setIsSubmitted(true);
       toast({
         title: "Message envoyé !",
-        description: "Nous reviendrons vers vous dans les plus brefs délais.",
+        description: "Nous reviendrons vers vous dans les plus brefs délais, merci.",
       });
     }, 1500);
   };
