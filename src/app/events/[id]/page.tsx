@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Calendar, MapPin, Users, Clock, ArrowLeft, MessageSquare, Star, Send, ShieldCheck, AlertTriangle, Trash2, Camera, MoreVertical, Edit2, Copy, RefreshCw, Settings2 } from "lucide-react";
-import { Navbar } from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
