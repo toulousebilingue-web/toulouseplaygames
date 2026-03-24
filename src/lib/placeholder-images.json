@@ -1,0 +1,76 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-toulouse",
+      "description": "Une vue magnifique de la ville de Toulouse",
+      "imageUrl": "https://picsum.photos/seed/toulouse-city/1200/600",
+      "imageHint": "Toulouse city"
+    },
+    {
+      "id": "board-game-1",
+      "description": "Des gens jouant à un jeu de société",
+      "imageUrl": "https://picsum.photos/seed/boardgame-1/600/400",
+      "imageHint": "board game"
+    },
+    {
+      "id": "board-game-2",
+      "description": "Plateau de jeu Catan installé",
+      "imageUrl": "https://picsum.photos/seed/boardgame-2/600/400",
+      "imageHint": "tabletop game"
+    },
+    {
+      "id": "board-game-3",
+      "description": "Pièces de jeu colorées",
+      "imageUrl": "https://picsum.photos/seed/boardgame-3/600/400",
+      "imageHint": "game pieces"
+    },
+    {
+      "id": "board-game-box-profile",
+      "description": "Une boîte de jeu de société colorée",
+      "imageUrl": "https://picsum.photos/seed/64/200/200",
+      "imageHint": "boardgame box"
+    },
+    {
+      "id": "avatar-1",
+      "description": "Avatar utilisateur clair et lumineux",
+      "imageUrl": "https://picsum.photos/seed/64/200/200",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "avatar-2",
+      "description": "Avatar utilisateur féminin clair",
+      "imageUrl": "https://picsum.photos/seed/65/200/200",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "community-1",
+      "description": "Trente ans, amis jouant à un jeu de plateau",
+      "imageUrl": "https://picsum.photos/seed/community-board/400/300",
+      "imageHint": "people boardgame"
+    },
+    {
+      "id": "community-2",
+      "description": "Joueurs sur ordinateur en réseau, ambiance conviviale",
+      "imageUrl": "https://picsum.photos/seed/community-pc/400/300",
+      "imageHint": "pc gaming"
+    },
+    {
+      "id": "community-3",
+      "description": "Partie de cartes passionnée dans un bar à jeux",
+      "imageUrl": "https://picsum.photos/seed/community-cards/400/300",
+      "imageHint": "friends cards"
+    },
+    {
+      "id": "community-4",
+      "description": "Compétition amicale sur console",
+      "imageUrl": "https://picsum.photos/seed/community-console/400/300",
+      "imageHint": "video gaming"
+    },
+    {
+      "id": "community-5",
+      "description": "Soirée jeux de rôle autour d'une table",
+      "imageUrl": "https://picsum.photos/seed/community-rpg/400/300",
+      "imageHint": "tabletop rpg"
+    }
+  ]
+}

@@ -1,159 +1,23 @@
-import { 
-  Trophy, Users, Zap, Heart, Bike, Waves, Mountain, 
-  Wind, Target, Brain, Activity, Dumbbell, Car, Swords 
-} from "lucide-react";
 
-export const SPORTS_DATA = [
-  {
-    category: "Athlétisme",
-    icon: Activity,
-    color: "text-primary",
-    items: [
-      "Marche", "Course à pied", "Course d'obstacles (Haies, Steeple...)", "Course de relais", "Sprint", "Demi-fond", "Course de fond (Marathon, Trail...)", "Ultrafond", "Lancers (Disque, Javelot, Marteau, Poids)", "Sauts (Longueur, Hauteur, Perche, Triple saut)", "Épreuves combinées (Décathlon, Heptathlon, Pentathlon)"
-    ]
-  },
-  {
-    category: "Sports collectifs",
-    icon: Users,
-    color: "text-accent",
-    items: [
-      "Football", "Basket-ball", "Rugby (XV, XIII, VII)", "Volley-ball", "Handball", "Baseball", "Cricket", "Futsal", "Hockey sur glace", "Hockey sur gazon", "Water-polo", "Beach Volley", "Beach Soccer", "Flag football", "Floorball", "Lacrosse", "Polo", "Ultimate Frisbee", "Paintball", "Sepak Takraw"
-    ]
-  },
-  {
-    category: "Sports de force",
-    icon: Dumbbell,
-    color: "text-primary",
-    items: [
-      "Bras de fer", "Bodybuilding", "Force basque", "Haltérophilie", "Powerlifting", "Tir à la corde", "Girevoy", "Highland Games"
-    ]
-  },
-  {
-    category: "Sports mécaniques",
-    icon: Car,
-    color: "text-destructive",
-    items: [
-      "Formule 1", "Karting", "Rallye (WRC)", "Moto (MotoGP, Enduro, Trial)", "Motocross", "NASCAR", "IndyCar", "Dragster", "Motonautisme", "Aéronautique"
-    ]
-  },
-  {
-    category: "Sports de raquette",
-    icon: Target,
-    color: "text-accent",
-    items: [
-      "Tennis", "Badminton", "Padel", "Tennis de table", "Squash", "Pelote basque", "Racketlon", "Racquetball", "Speed-ball"
-    ]
-  },
-  {
-    category: "Sports avec animaux",
-    icon: Heart,
-    color: "text-secondary",
-    items: [
-      "Équitation (CSO, Dressage, Complet)", "Sport hippique", "Polo", "Cani-cross", "Agility", "Courses de lévriers", "Course de traîneaux", "Rodéo"
-    ]
-  },
-  {
-    category: "Sports anciens",
-    icon: Trophy,
-    color: "text-muted-foreground",
-    items: [
-      "Jeu de paume", "Soule", "Pancrace", "Pentathlon antique", "Pugilat", "Jeu de mail", "Calcio florentin"
-    ]
-  },
-  {
-    category: "Sports gymniques et artistiques",
-    icon: Zap,
-    color: "text-secondary",
-    items: [
-      "Gymnastique artistique", "Gymnastique rythmique", "Trampoline", "Fitness", "Aérobic", "Danse sportive", "Breakdance", "Patinage artistique", "Natation synchronisée", "Plongeon", "Pole dance", "Parkour"
-    ]
-  },
-  {
-    category: "Cyclisme",
-    icon: Bike,
-    color: "text-primary",
-    items: [
-      "Cyclisme sur route", "VTT", "BMX (Race & Freestyle)", "Cyclisme sur piste", "Trial"
-    ]
-  },
-  {
-    category: "Arts martiaux & Combat",
-    icon: Swords,
-    color: "text-destructive",
-    items: [
-      "Judo", "Karaté", "Aïkido", "Taekwondo", "Kendo", "Boxe (Anglaise, Thaï, Savate)", "Kick-boxing", "Lutte", "MMA", "Escrime", "Krav-maga", "Jiu-jitsu brésilien"
-    ]
-  },
-  {
-    category: "Sports de glace",
-    icon: Waves,
-    color: "text-accent",
-    items: [
-      "Hockey sur glace", "Curling", "Patinage de vitesse", "Short-track", "Bobsleigh", "Luge", "Skeleton"
-    ]
-  },
-  {
-    category: "Sports de plein air",
-    icon: Mountain,
-    color: "text-primary",
-    items: [
-      "Escalade", "Alpinisme", "Randonnée pédestre", "Course d'orientation", "Spéléologie", "Canyonisme", "Trail", "Jogging", "Marche nordique"
-    ]
-  },
-  {
-    category: "Sports aériens",
-    icon: Wind,
-    color: "text-accent",
-    items: [
-      "Parachutisme", "Parapente", "Deltaplane", "Vol libre", "Voltige aérienne"
-    ]
-  },
-  {
-    category: "Épreuves combinées",
-    icon: Zap,
-    color: "text-primary",
-    items: [
-      "Triathlon", "Duathlon", "Aquathlon", "Pentathlon moderne", "Biathlon"
-    ]
-  },
-  {
-    category: "Sports de précision",
-    icon: Target,
-    color: "text-secondary",
-    items: [
-      "Golf", "Pétanque", "Tir à l'arc", "Billard", "Bowling", "Fléchettes", "Tir sportif"
-    ]
-  },
-  {
-    category: "Sports nautiques",
-    icon: Waves,
-    color: "text-accent",
-    items: [
-      "Natation", "Surf", "Voile", "Aviron", "Canoë-kayak", "Planche à voile", "Kitesurf", "Plongée sous-marine"
-    ]
-  },
-  {
-    category: "Sports de glisse",
-    icon: Mountain,
-    color: "text-primary",
-    items: [
-      "Ski alpin", "Ski de fond", "Snowboard", "Skateboard", "Roller", "Trottinette Freestyle"
-    ]
-  },
-  {
-    category: "Sports cérébraux",
-    icon: Brain,
-    color: "text-secondary",
-    items: [
-      "Échecs", "Poker", "Bridge", "Dames", "Go", "Scrabble"
-    ]
-  }
-];
-
-// Génère une liste plate de tous les sports pour les sélecteurs
-export const ALL_SPORTS = SPORTS_DATA.flatMap(cat => 
-  cat.items.map(name => ({
-    id: name.toLowerCase().replace(/\s+/g, '-'),
-    name: name
-  }))
-);
+export const ALL_SPORTS = Array.from(new Set([
+  "Marche", "Course à pied", "Course de haies", "Steeple", "Course à obstacles", "Course de relais", "Sprint", "Demi-fond", "Cross-country", "Marathon", "Trail", "Course en montagne", "Skyrunning", "Ultrafond", "Ultra-trail", "Lancer du disque", "Lancer du javelot", "Lancer du marteau", "Lancer du poids", "Saut en longueur", "Saut en hauteur", "Saut à la perche", "Triple saut", "Décathlon", "Heptathlon", "Pentathlon",
+  "Arena football", "Balai-ballon sur glace", "Balle au tambourin", "Ballon au poing", "Bandy", "Baseball", "Basket-ball", "Basket-ball à trois", "Beach Handball", "Beach Volley", "Beach Soccer", "Beach Ultimate", "Bouzkachi", "Calcio florentin", "Camogie", "Cricket", "Crosse", "Crosse ancienne", "Cycle-ball", "Dodgeball", "Double Disc Court", "Fistball", "Flag football", "Floorball", "Foot à 5", "Football", "Football américain", "Football australien", "Football canadien", "Football gaélique", "Football de règles internationales", "Football universel", "Futsal", "Jorkyball", "Handball", "Hockey en salle", "Hockey subaquatique", "Hockey sur gazon", "Hockey sur glace", "Horse-ball", "Hurling", "Kabaddi", "Kayak-polo", "Kin-ball", "Korfbal", "Longue paume", "Moto-ball", "Netball", "Paintball", "Pelota P'urhépecha", "Pelote basque", "Pesäpallo", "Plumfoot", "Polo", "Rafroball", "Ringuette", "Rink hockey", "Roller derby", "Roller in line hockey", "Rollersoccer", "Rounders", "Rugby à sept", "Rugby à XV", "Rugby à XIII", "Sepak Takraw", "Shinty", "Slamball", "Softball", "Stoolball", "Street-hockey", "Tchoukball", "Touch rugby", "Town ball", "Ultimate", "Vigoro", "Volley-ball", "Volata", "Water-polo",
+  "Bras de fer", "Bodybuilding", "Force basque", "Girevoy", "Haltérophilie", "Highland Games", "Powerlifting", "Tir à la corde",
+  "WEC", "Karting", "NASCAR", "DTM", "WRC", "Formule 1", "Formule 2", "Formule 3", "Formule 4", "Formule E", "Course de côte", "Rallye-raid", "WTCC", "Indy Racing League", "Fol'Car", "Drift", "Autocross", "Rallycross", "Course de camions", "Dragster", "Endurance moto", "Enduro", "Freestyle motocross", "Motocross", "Supermotard", "Trial", "Speedway", "Stunt", "Supercross", "Vitesse moto", "Aéronautique", "Motonautisme", "Motoneige",
+  "Badminton", "Beach tennis", "Jeu de paume", "Padel", "Peloc", "Racketlon", "Racquetball", "Soft tennis", "Speed Badminton", "Speed-ball", "Squash", "Tennis", "Tennis de table",
+  "Agility", "Cani-cross", "Corrida", "Courses de lévriers", "Course de chameaux", "Course de chars", "Course de traîneaux", "Rodéo", "Sport hippique", "Amazone", "Attelage", "Concours complet", "Doma Vaquera", "Dressage", "Endurance", "Équitation Camargue", "Équitation islandaise", "Équitation Western", "Hunter", "Oulak", "Polocrosse", "Pony games", "Rodéo chilien", "Saut d'obstacles", "Ski joëring", "TREC", "Voltige en Cercle",
+  "Barres", "Harpastum", "Jeu de mail", "Pancrace", "Pentathlon antique", "Pugilat", "Soule",
+  "Aérobic", "Cheerleading", "Claquettes", "Corde à sauter", "Double dutch", "Cyclisme artistique", "Danse sportive", "Breakdance", "Fitness", "Gymnastique acrobatique", "Gymnastique aérobique", "Gymnastique artistique", "Gymnastique rythmique", "Parkour", "Trampoline", "Tumbling", "Majorette", "Natation synchronisée", "Patinage artistique", "Danse sur glace", "Patinage synchronisé", "Plongeon", "Pole dance", "Twirling bâton",
+  "BMX", "BMX freestyle", "BMX Supercross", "Cyclisme sur piste", "Cyclisme sur route", "Ultracyclisme", "Cyclo-cross", "Cyclotourisme", "Vélo tout terrain",
+  "Aïkibudo", "Aïkido", "Bando", "Banshay", "Capoeira", "Hapkido", "Jeet kune do", "Ju-jitsu", "Jiu-jitsu brésilien", "Judo", "Kalarippayatt", "Karaté", "Kendo", "Kobudo", "Krabi krabong", "Muay-boran", "Ninjutsu", "Sumo", "Taekwondo", "Tai-chi-chuan", "Unifight", "Viet vo dao", "Vovinam Việt Võ Đạo", "Wushu", "Wadō-ryū",
+  "Boxe anglaise", "Boxe birmane", "Boxe française", "Boxe thaïlandaise", "Kick-boxing", "Canne et Bâton de combat", "Escrime", "Lutte gréco-romaine", "Lutte libre", "Lutte sénégalaise", "Mixed martial art (MMA)", "Krav-maga", "Sport chanbara",
+  "Bobsleigh", "Curling", "Eisstock", "Luge", "Patinage de vitesse", "Short-track", "Skeleton",
+  "Alpinisme", "Escalade", "Canyonisme", "Course d'orientation", "Spéléologie", "Randonnée pédestre", "Slackline",
+  "Aéromodélisme", "Aérostation", "Base jump", "Cerf-volant", "Deltaplane", "Parachutisme", "Parapente", "ULM", "Vol libre", "Vol à voile", "Voltige aérienne",
+  "Triathlon", "Duathlon", "Aquathlon", "Aquabike", "Pentathlon moderne", "Combiné nordique", "Biathlon", "Racketlon",
+  "Airsoft", "Ball-trap", "Billard", "Boule bretonne", "Boule de fort", "Boulingrin", "Boomerang", "Bowling", "Croquet", "Fléchettes", "Golf", "Minigolf", "Pétanque", "Quilles de neuf", "Sarbacane sportive", "Sport boule", "Tir", "Tir à l'arc",
+  "Aviron", "Bateau-dragon", "Canoë-kayak", "Chasse sous-marine", "Dragon Boat", "Motomarine", "Joutes nautiques", "Kayak-polo", "Kitesurf", "Nage avec palmes", "Nage en eau libre", "Nage en eau vive", "Planche à voile", "Plongée sous-marine", "Rafting", "Ski nautique", "Surf", "Voile", "Wakeboard", "Wakesurf",
+  "Ski alpin", "Ski de randonnée", "Ski acrobatique", "Ski freestyle", "Ski freeride", "Ski de fond", "Ski de vitesse", "Ski extrême", "Ski télémark", "Bodyboard", "Mountainboard", "Roller", "Skateboard", "Snowboard", "Speed-riding", "Trottinette Freestyle",
+  "Belote", "Bridge", "Dames", "Échecs", "Go", "Poker", "Scrabble", "Échecs chinois",
+  "Air hockey", "Baby-foot", "Char à voile", "Culturisme", "Footbag", "Main à main", "Speedcubing", "Sport stacking", "Sport électronique", "Tricking", "Yoga"
+]));
