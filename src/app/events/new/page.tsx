@@ -15,7 +15,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sparkles, Search, ChevronsUpDown, Camera, ImageIcon, Building2, Star, RefreshCw, ShieldCheck, Loader2 } from "lucide-react";
 import { MOCK_GAMES, MOCK_PROFILES, MOCK_EVENTS } from "@/lib/mock-data";
-import { ALL_SPORTS, SPORTS_DATA } from "@/lib/sports-data";
+import { ALL_SPORTS } from "@/lib/sports-data";
 import { ALL_BARS, Bar } from "@/lib/bars-data";
 import { aiEventDescriptionGenerator } from "@/ai/flows/ai-event-description-generator";
 import { useToast } from "@/hooks/use-toast";
@@ -106,7 +106,7 @@ const filteredItems = useMemo(() => {
       );
     } else {
       // Sécurité : on s'assure que SPORTS_DATA existe bien avant de manipuler
-      const sportsSource = SPORTS_DATA || [];
+      const sportsSource = ALL_SPORTS || [];
       const favs = user?.favorite_sports || [];
       const searchLower = searchTerm.toLowerCase();
 
